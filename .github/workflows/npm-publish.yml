@@ -17,6 +17,12 @@ jobs:
           node-version: 20
       - run: npm ci
 
+      - name: Sync version with GitHub release tag
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          npm version "$VERSION" --no-git-tag-version
+
+
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
