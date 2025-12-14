@@ -21,6 +21,11 @@ jobs:
         run: |
           VERSION=${GITHUB_REF_NAME#v}
           npm version "$VERSION" --no-git-tag-version
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add package.json package-lock.json
+          git commit -m "Sync package version with release tag $VERSION"
+          git push
 
 
   publish-npm:
