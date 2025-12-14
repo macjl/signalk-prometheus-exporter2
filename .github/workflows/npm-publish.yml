@@ -20,8 +20,6 @@ jobs:
         with:
           node-version: 20
           
-      - run: npm ci
-
       - name: Sync version with GitHub release tag
         run: |
           VERSION=${GITHUB_REF_NAME#v}
@@ -30,8 +28,9 @@ jobs:
           git config user.email "actions@github.com"
           git add package.json package-lock.json
           git commit -m "Sync package version with release tag $VERSION"
-          git push origin HEAD:master
+          git push
 
+      - run: npm ci
 
   publish-npm:
     needs: build
