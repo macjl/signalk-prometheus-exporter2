@@ -30,7 +30,7 @@ jobs:
           git config user.email "actions@github.com"
           git add package.json package-lock.json
           git commit -m "Sync package version with release tag $VERSION"
-          git push
+          git push origin HEAD:master
 
 
   publish-npm:
